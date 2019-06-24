@@ -46,7 +46,7 @@
   "dependencies": {
     "@babel/preset-typescript": "7.3.3",
     "@types/jest": "24.0.13",
-    "@typescript-eslint/eslint-plugin": "1.9.0",
+    "@typescript-eslint/eslint-plugin": "1.11.0",
     "@typescript-eslint/parser": "1.9.0",
     "typescript": "3.5.1"
   },
