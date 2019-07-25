@@ -56,7 +56,7 @@
     "@types/debug": "4.1.4",
     "@types/jest": "24.0.15",
     "@typescript-eslint/eslint-plugin": "1.11.0",
-    "@typescript-eslint/parser": "1.11.0",
+    "@typescript-eslint/parser": "1.13.0",
     "babel-eslint": "10.0.2",
     "babel-jest": "24.8.0",
     "documentation": "12.0.3",
