@@ -51,6 +51,7 @@ Run `npx semantic-release-cli setup --ask-for-passwords`
 Turn on debugging by using the DEBUG environment variable for Node.js and using localStorage.debug in the browser.
 
 E.g:
+
 ```bash
 DEBUG="PLACEHOLDER_PROJECT_NAME:*" npm run dev
 ```
@@ -58,7 +59,6 @@ DEBUG="PLACEHOLDER_PROJECT_NAME:*" npm run dev
 ## Commit message format
 
 This boiler plate uses the **semantic-release** package to manage versioning. Once it has been set up, version numbers and Github release changelogs will be automatically managed. **semantic-release** uses the commit messages to determine the type of changes in the codebase. Following formalized conventions for commit messages, **semantic-release** automatically determines the next [semantic version](https://semver.org) number, generates a changelog and publishes the release.
-
 
 Use `npm run commit` instead of `git commit` in order to invoke Commitizen commit helper that helps with writing properly formatted commit messages.
 

@@ -1,14 +1,14 @@
 {
-  "name": "@rjchow/nod",
-  "version": "0.0.0-development",
+  "name": "oa-token",
+  "version": "1.0.0",
   "description": "My node module",
   "license": "MIT",
-  "repository": "rjchow/nod",
+  "repository": "oa-token",
   "main": "dist/index.js",
   "author": {
-    "name": "Diego Haz",
-    "email": "hazdiego@gmail.com",
-    "url": "https://github.com/diegohaz"
+    "name": "Sumit Chaudhari",
+    "email": "sumit.nitsurat@gmail.com",
+    "url": "https://github.com/sumitnitsurat"
   },
   "files": [
     "dist",
@@ -25,7 +25,7 @@
     "postdocs": "git add README.md",
     "clean": "rimraf dist",
     "prebuild": "npm run docs && npm run clean",
-    "build": "tsc --emitDeclarationOnly && babel src -d dist --ignore src/**/*.spec.js,src/**/*.test.js -x .js,.ts,.tsx",
+    "build": "tsc --emitDeclarationOnly && babel src -d dist --ignore src/**/*.spec.js,src/**/*.test.js -x .js,.ts,.tsx,.json",
     "preversion": "npm run lint && npm test && npm run build",
     "semantic-release": "semantic-release",
     "commit": "git-cz",
@@ -49,7 +49,9 @@
     "generator-nod"
   ],
   "dependencies": {
-    "debug": "4.1.1"
+    "@govtechsg/open-attestation": "1.1.41",
+    "debug": "4.1.1",
+    "ethers": "4.0.37"
   },
   "devDependencies": {
     "@babel/cli": "7.5.5",
