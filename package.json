@@ -51,7 +51,8 @@
   "dependencies": {
     "@govtechsg/open-attestation": "1.1.41",
     "debug": "4.1.1",
-    "ethers": "4.0.37"
+    "ethers": "4.0.37",
+    "lodash": "4.17.15"
   },
   "devDependencies": {
     "@babel/cli": "7.5.5",
@@ -65,6 +66,7 @@
     "@ls-age/commitlint-circle": "1.0.0",
     "@types/debug": "4.1.4",
     "@types/jest": "24.0.15",
+    "@types/lodash": "4.14.144",
     "@typescript-eslint/eslint-plugin": "1.11.0",
     "@typescript-eslint/parser": "1.11.0",
     "babel-eslint": "10.0.2",
