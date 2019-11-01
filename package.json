@@ -25,7 +25,7 @@
     "postdocs": "git add README.md",
     "clean": "rimraf dist",
     "prebuild": "npm run docs && npm run clean",
-    "build": "tsc --emitDeclarationOnly && babel src -d dist --ignore src/**/*.spec.js,src/**/*.test.js -x .js,.ts,.tsx,.json",
+    "build": "tsc --emitDeclarationOnly && babel src -d dist --ignore src/**/*.spec.ts,src/**/*.test.ts -x .js,.ts,.tsx --copy-files",
     "preversion": "npm run lint && npm test && npm run build",
     "semantic-release": "semantic-release",
     "commit": "git-cz",
