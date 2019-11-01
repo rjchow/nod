@@ -32,7 +32,7 @@ class Token implements TokenInterface {
 
   public async ownerOf(): Promise<string> {
     try {
-      const tokenId = `0x${get(this.document, "[0].signature.targetHash")}`;
+      const tokenId = `0x${get(this.document, "signature.targetHash")}`;
       trace("find owner of:", tokenId);
       return await getOwnerOf(tokenId, this.getIssuers());
     } catch (e) {

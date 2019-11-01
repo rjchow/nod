@@ -7,12 +7,11 @@ const getContractInstance = (issuers: Issuer[]) => {
     .filter(instance => !instance);
 };
 
-export const getOwnerOf = (_tokenId: string, issuers: Issuer[]) => {
+export const getOwnerOf = async (_tokenId: string, issuers: Issuer[]): Promise<string> => {
   const contractInstances = getContractInstance(issuers);
-  const owner = contractInstances.map(instance => instance.ownerOf(_tokenId)).find(o => o);
-  if (!owner) {
-    throw new Error("Invalid Document");
-  }
+
+  const result = await Promise.all(contractInstances.map(instance => instance.ownerOf(_tokenId)));
+  const owner = result.find(o => o);
   return owner;
 };
 
