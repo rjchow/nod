@@ -27,28 +27,21 @@ class Token implements TokenInterface {
 
   private getIssuers(): Object[] {
     const data = getData(this.document);
+    if (data.issuers.length > 1) throw new Error("Invalid token");
     return data.issuers || [];
   }
 
   public async ownerOf(): Promise<string> {
-    try {
-      const tokenId = `0x${get(this.document, "signature.targetHash")}`;
-      trace("find owner of:", tokenId);
-      return await getOwnerOf(tokenId, this.getIssuers());
-    } catch (e) {
-      throw new Error(e.message);
-    }
+    const tokenId = `0x${get(this.document, "signature.targetHash")}`;
+    trace("find owner of:", tokenId);
+    return getOwnerOf(tokenId, this.getIssuers());
   }
 
-  public async transferOnwership(_to: string): Promise<boolean> {
-    try {
-      const from: string = await this.ownerOf();
-      const tokenId = `0x${get(this.document, "[0].signature.targetHash")}`;
-      trace(`transfer token ${tokenId} from ${from} to ${_to}`);
-      return await transferTokenOwnership(from, _to, tokenId, this.getIssuers());
-    } catch (e) {
-      throw new Error(e.message);
-    }
+  public async transferOwnership(_to: string): Promise<object> {
+    const from: string = await this.ownerOf();
+    const tokenId = `0x${get(this.document, "signature.targetHash")}`;
+    trace(`transfer token ${tokenId} from ${from} to ${_to}`);
+    return transferTokenOwnership(from, _to, tokenId, this.getIssuers());
   }
 }
 

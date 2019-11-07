@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "type-check": "tsc --noEmit",
-    "test": "jest",
+    "test": "jest --testPathPattern=src",
     "coverage": "npm test -- --coverage",
     "postcoverage": "open-cli coverage/lcov-report/index.html",
     "lint": "eslint . --ext js,ts,tsx",

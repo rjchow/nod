@@ -17,6 +17,14 @@ export const tokenRopstenInvalid: SignedDocument = {
           type: "cc980ec2-297e-4dac-9a66-2f11b1fc3f78:string:DNS-TXT",
           location: "70d10f15-2669-40c0-8cce-22cd56b0d23a:string:tradetrust.io"
         }
+      },
+      {
+        name: "31e6be0b-7190-4560-84ff-2155d36b9f54:string:DEMO STORE 2",
+        tokenRegistry: "9610d97f-e52a-43c6-986c-35293655e489:string:0x48399Fb88bcD031C556F53e93F690EEC07963Af3",
+        identityProof: {
+          type: "cc980ec2-297e-4dac-9a66-2f11b1fc3f78:string:DNS-TXT",
+          location: "70d10f15-2669-40c0-8cce-22cd56b0d23a:string:tradetrust.io"
+        }
       }
     ],
     recipient: {
