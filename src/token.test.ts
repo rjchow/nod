@@ -3,12 +3,9 @@ import Token from ".";
 import { tokenRopstenValid } from "../test/fixtures/tokenRopstenValid";
 import { tokenRopstenInvalid } from "../test/fixtures/tokenRopstenInvalid";
 /* eslint-disable global-require */
-jest.mock("./util/provider", () => {
-  function getProvider() {
-    return require("ganache-cli").provider();
-  }
-  return { getProvider };
-});
+jest.mock("./util/provider", () => ({
+  getProvider: require("ganache-cli").provider
+}));
 /* eslint-enable global-require */
 jest.mock("./util/token", () => {
   function getOwnerOf() {

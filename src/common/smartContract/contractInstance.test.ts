@@ -4,12 +4,9 @@ import tokenRegistryAbi from "./abi/tokenRegistry.json";
 
 jest.mock("ethers");
 /* eslint-disable global-require */
-jest.mock("../../util/provider", () => {
-  function getProvider() {
-    return require("ganache-cli").provider();
-  }
-  return { getProvider };
-});
+jest.mock("../../util/provider", () => ({
+  getProvider: require("ganache-cli").provider
+}));
 /* eslint-enable global-require */
 it("creates a ethers.Contract instance with the right provider", () => {
   contractInstance({
