@@ -1,5 +1,9 @@
 export interface Issuer {
-  tokenRegistry?: string;
-  certificateStore?: string;
-  documentStore?: string;
+  tokenRegistry: string;
+}
+
+export interface TransferOwnership {
+  txHash: string;
+  token: string;
+  owner: string;
 }

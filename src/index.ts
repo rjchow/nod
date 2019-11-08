@@ -3,13 +3,15 @@ import { get } from "lodash";
 import { getLogger } from "./util/logger";
 import { getProvider } from "./util/provider";
 import { getOwnerOf, transferTokenOwnership } from "./util/token";
+import { Issuer, TransferOwnership } from "./types";
 
 const { trace } = getLogger("TokenInfo:");
 
 interface TokenInterface {
   document: Document;
   web3Provider: any;
-  ownerOf(_tokenId: string): any;
+  getOwner(): Promise<string>;
+  transferOwnership(to: string): Promise<object>;
 }
 
 /**
@@ -20,28 +22,35 @@ class Token implements TokenInterface {
 
   web3Provider: any;
 
-  constructor(_document: Document, _web3Provider?: any) {
-    this.document = _document;
-    this.web3Provider = _web3Provider || getProvider();
+  constructor(document: Document, web3Provider?: any) {
+    this.document = document;
+    this.web3Provider = web3Provider || getProvider();
   }
 
-  private getIssuers(): Object[] {
+  private getIssuer(): Issuer {
     const data = getData(this.document);
-    if (data.issuers.length > 1) throw new Error("Invalid token");
-    return data.issuers || [];
+    if (data.issuers.length > 1) throw new Error("Token must have exactly one token registry contract");
+    if (!data.issuers[0].tokenRegistry) throw new Error("Token must have token registry in it");
+    return data.issuers[0];
   }
 
-  public async ownerOf(): Promise<string> {
+  public getSigner(): Promise<string> {
+    return this.web3Provider.getSigner(0);
+  }
+
+  public async getOwner(): Promise<string> {
     const tokenId = `0x${get(this.document, "signature.targetHash")}`;
     trace("find owner of:", tokenId);
-    return getOwnerOf(tokenId, this.getIssuers());
+    return getOwnerOf(tokenId, this.getIssuer());
   }
 
-  public async transferOwnership(_to: string): Promise<object> {
-    const from: string = await this.ownerOf();
+  public async transferOwnership(to: string): Promise<TransferOwnership> {
+    const from: string = await this.getOwner();
+    const signer = await this.getSigner();
     const tokenId = `0x${get(this.document, "signature.targetHash")}`;
-    trace(`transfer token ${tokenId} from ${from} to ${_to}`);
-    return transferTokenOwnership(from, _to, tokenId, this.getIssuers());
+    trace(`transfer token ${tokenId} from ${from} to ${to}`);
+    trace(`admin address: ${signer}`);
+    return transferTokenOwnership(from, to, tokenId, this.getIssuer(), signer);
   }
 }
 

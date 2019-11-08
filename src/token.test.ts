@@ -2,6 +2,7 @@ import { get } from "lodash";
 import Token from ".";
 import { tokenRopstenValid } from "../test/fixtures/tokenRopstenValid";
 import { tokenRopstenInvalid } from "../test/fixtures/tokenRopstenInvalid";
+
 /* eslint-disable global-require */
 jest.mock("./util/provider", () => ({
   getProvider: require("ganache-cli").provider
@@ -25,17 +26,19 @@ describe("token info", () => {
 
   it("should throw error if more than 1 issuers", async () => {
     const instance = new Token(tokenRopstenInvalid);
-    expect(instance.ownerOf()).rejects.toEqual(new Error("Invalid token"));
+    expect(instance.getOwner()).rejects.toEqual(new Error("Token must have exactly one token registry contract"));
   });
 
   it("should return the owner of the token", async () => {
     const instance = new Token(tokenRopstenValid);
-    const owner = await instance.ownerOf();
+    const owner = await instance.getOwner();
     expect(owner).toEqual("0x37242939c5b691d0a9402b21cbd61acd287e552b");
   });
 
   it("should transfer the ownership of the token", async () => {
     const instance = new Token(tokenRopstenValid);
+    const web3Provider = jest.spyOn(instance, "getSigner");
+    web3Provider.mockImplementationOnce(() => Promise.resolve("0xA"));
     const res = await instance.transferOwnership("0xA");
     const tokenId = `0x${get(instance.document, "signature.targetHash")}`;
     expect(res).toEqual({ token: tokenId, owner: "0xA" });
