@@ -29,7 +29,7 @@ class Token implements TokenInterface {
 
   private getIssuer(): Issuer {
     const data = getData(this.document);
-    if (data.issuers.length > 1) throw new Error("Token must have exactly one token registry contract");
+    if (!(data.issuers.length === 1)) throw new Error("Token must have exactly one token registry contract");
     if (!data.issuers[0].tokenRegistry) throw new Error("Token must have token registry in it");
     return data.issuers[0];
   }
