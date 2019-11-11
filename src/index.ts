@@ -11,7 +11,7 @@ interface TokenInterface {
   document: Document;
   web3Provider: any;
   getOwner(): Promise<string>;
-  transferOwnership(to: string): Promise<object>;
+  transferOwnership(to: string): Promise<TransferOwnership>;
 }
 
 /**
