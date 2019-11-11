@@ -1,14 +1,14 @@
 {
-  "name": "@rjchow/nod",
-  "version": "0.0.0-development",
+  "name": "oa-token",
+  "version": "1.0.0",
   "description": "My node module",
   "license": "MIT",
-  "repository": "rjchow/nod",
+  "repository": "oa-token",
   "main": "dist/index.js",
   "author": {
-    "name": "Diego Haz",
-    "email": "hazdiego@gmail.com",
-    "url": "https://github.com/diegohaz"
+    "name": "Sumit Chaudhari",
+    "email": "sumit.nitsurat@gmail.com",
+    "url": "https://github.com/sumitnitsurat"
   },
   "files": [
     "dist",
@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "type-check": "tsc --noEmit",
-    "test": "jest",
+    "test": "jest --testPathPattern=src",
     "coverage": "npm test -- --coverage",
     "postcoverage": "open-cli coverage/lcov-report/index.html",
     "lint": "eslint . --ext js,ts,tsx",
@@ -25,7 +25,7 @@
     "postdocs": "git add README.md",
     "clean": "rimraf dist",
     "prebuild": "npm run docs && npm run clean",
-    "build": "tsc --emitDeclarationOnly && babel src -d dist --ignore src/**/*.spec.js,src/**/*.test.js -x .js,.ts,.tsx",
+    "build": "tsc --emitDeclarationOnly && babel src -d dist --ignore src/**/*.spec.ts,src/**/*.test.ts -x .js,.ts,.tsx --copy-files",
     "preversion": "npm run lint && npm test && npm run build",
     "semantic-release": "semantic-release",
     "commit": "git-cz",
@@ -49,7 +49,11 @@
     "generator-nod"
   ],
   "dependencies": {
-    "debug": "4.1.1"
+    "@govtechsg/open-attestation": "1.1.41",
+    "debug": "4.1.1",
+    "ethers": "4.0.37",
+    "ganache-cli": "6.7.0",
+    "lodash": "4.17.15"
   },
   "devDependencies": {
     "@babel/cli": "7.5.5",
@@ -63,6 +67,7 @@
     "@ls-age/commitlint-circle": "1.0.0",
     "@types/debug": "4.1.4",
     "@types/jest": "24.0.15",
+    "@types/lodash": "4.14.144",
     "@typescript-eslint/eslint-plugin": "1.11.0",
     "@typescript-eslint/parser": "1.11.0",
     "babel-eslint": "10.0.2",

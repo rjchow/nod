@@ -8,9 +8,12 @@
       "strict": true,
       "declaration": true,
       "noFallthroughCasesInSwitch": true,
+      "resolveJsonModule": true,
+      "allowSyntheticDefaultImports": true,
       "noImplicitReturns": true,
       "noUnusedLocals": true,
       "noUnusedParameters": true,
       "stripInternal": true
-    }
+    },
+    "include": ["./src/**/*"]
   }
