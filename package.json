@@ -1,6 +1,6 @@
 {
   "name": "oa-token",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "description": "My node module",
   "license": "MIT",
   "repository": "oa-token",
@@ -86,7 +86,7 @@
     "open-cli": "5.0.0",
     "prettier": "1.18.2",
     "rimraf": "2.6.3",
-    "semantic-release": "15.13.18",
+    "semantic-release": "^15.13.30",
     "typescript": "3.5.3"
   },
   "publishConfig": {
