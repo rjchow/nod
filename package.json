@@ -1,9 +1,8 @@
 {
-  "name": "oa-token",
+  "name": "@govtechsg/oa-token",
   "version": "0.0.0-development",
   "description": "My node module",
   "license": "MIT",
-  "repository": "oa-token",
   "main": "dist/index.js",
   "author": {
     "name": "Sumit Chaudhari",
