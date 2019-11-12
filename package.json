@@ -96,5 +96,9 @@
     "commitizen": {
       "path": "node_modules/@commitlint/prompt"
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Open-Attestation/oa-token.git"
   }
 }
