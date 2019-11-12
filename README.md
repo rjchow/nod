@@ -1,50 +1,35 @@
 # nod
 
-NodeJS module generator/boilerplate.
-
-## Features
-
--   [**Babel**](https://babeljs.io/) - Write next generation JavaScript today.
--   [**Debug**](https://github.com/visionmedia/debug) - JS debugging utility that works both in node.js and browsers.
--   [**Jest**](https://facebook.github.io/jest) - JavaScript testing framework used by Facebook.
--   [**ESLint**](http://eslint.org/) - Make sure you are writing a quality code.
--   [**Prettier**](https://prettier.io/) - Enforces a consistent style by parsing your code and re-printing it.
--   [**Typescript**](https://www.typescriptlang.org/) - A static type checker for JavaScript by Microsoft.
--   [**Circle CI**](https://circleci.com/) - Automate tests, linting and releases for every push or pull request.
--   [**Documentation**](http://documentation.js.org/) - A documentation system so good, you'll actually write documentation.
--   [**Semantic Release**](https://github.com/semantic-release/semantic-release) - Fully automated version management and package publishing.
+ERC721 Token interactions
 
 ## Install
 
- `git clone` this repo
-
-```sh
-$ git clone https://github.com/rjchow/nod my-module
-$ cd my-module
-$ rm -rf .git
-$ npm install # or yarn
+```
+$ npm install @govtechsg/oa-token or yarn @govtechsg/oa-token
 ```
 
-Just make sure to edit `package.json`, `README.md` and `LICENSE` files accordingly with your module's info.
+## Initialize 
 
-## Commands
-
-```sh
-$ npm test # run tests with Jest
-$ npm run coverage # run tests with coverage and open it on browser
-$ npm run lint # lint code
-$ npm run docs # generate docs
-$ npm run build # generate docs and transpile code
+```
+import Token from "@govtechsg/oa-token";
+const token = new Token(token);
 ```
 
-## Setting up CI with automatic semantic-release versioning
+## Get the owner of the contract
 
--   Obtain CircleCI API token
--   Modify package.json with:
-    -   package name 
-    -   package repository 
+```
+token.getOwner();
+```
 
-Run `npx semantic-release-cli setup --ask-for-passwords`
+returns address of the owner.
+
+## Transfer the token ownership
+
+```
+token.transferOwnership("NEW_OWNER_ADDRESS");
+```
+
+returns object containing txHash, owner and tokenId.
 
 ## Logging
 
@@ -70,4 +55,4 @@ Use `npm run commit` instead of `git commit` in order to invoke Commitizen commi
 
 ## License
 
-MIT © [Diego Haz](https://github.com/diegohaz)
+MIT © [Sumit Chaudhari](https://github.com/sumitnitsurat)
