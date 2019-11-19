@@ -82,7 +82,7 @@
     "prettier": "1.18.2",
     "rimraf": "2.6.3",
     "semantic-release": "15.13.31",
-    "typescript": "3.5.3"
+    "typescript": "3.7.2"
   },
   "publishConfig": {
     "access": "public"
