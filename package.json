@@ -68,7 +68,7 @@
     "babel-eslint": "10.0.2",
     "babel-jest": "24.8.0",
     "commitizen": "4.0.3",
-    "documentation": "12.0.3",
+    "documentation": "12.1.4",
     "eslint": "6.6.0",
     "eslint-config-airbnb-base": "13.2.0",
     "eslint-config-prettier": "5.0.0",
