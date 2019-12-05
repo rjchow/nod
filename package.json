@@ -80,7 +80,7 @@
     "lint-staged": "9.4.3",
     "open-cli": "5.0.0",
     "prettier": "1.19.1",
-    "rimraf": "2.6.3",
+    "rimraf": "3.0.0",
     "semantic-release": "15.13.31",
     "semantic-release-npm-github-publish": "1.4.0",
     "typescript": "3.5.3"
