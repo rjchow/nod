@@ -83,7 +83,7 @@
     "rimraf": "2.6.3",
     "semantic-release": "15.13.31",
     "semantic-release-npm-github-publish": "1.4.0",
-    "typescript": "3.5.3"
+    "typescript": "3.7.3"
   },
   "publishConfig": {
     "access": "public"
