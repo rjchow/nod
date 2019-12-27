@@ -4,30 +4,22 @@ ERC721 Token interactions
 
 ## Install
 
-```
-$ npm install @govtechsg/oa-token or yarn @govtechsg/oa-token
-```
+    $ npm install @govtechsg/oa-token or yarn @govtechsg/oa-token
 
-## Initialize 
+## Initialize
 
-```
-import Token from "@govtechsg/oa-token";
-const token = new Token(token);
-```
+    import Token from "@govtechsg/oa-token";
+    const token = new Token(token);
 
 ## Get the owner of the contract
 
-```
-token.getOwner();
-```
+    token.getOwner();
 
 returns address of the owner.
 
 ## Transfer the token ownership
 
-```
-token.transferOwnership("NEW_OWNER_ADDRESS");
-```
+    token.transferOwnership("NEW_OWNER_ADDRESS");
 
 returns object containing txHash, owner and tokenId.
 

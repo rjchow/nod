@@ -1,6 +1,6 @@
 import * as ethers from "ethers";
 import { getProvider } from "../../util/provider";
-import tokenRegistryAbi from "./abi/tokenRegistry.json";
+import { abi as tokenRegistryAbi } from "../../../build/contracts/ERC721MintableFull.json";
 
 interface ContractInstance {
   contractAddress: string;

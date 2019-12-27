@@ -1,7 +1,7 @@
 import { get } from "lodash";
 import Token from ".";
-import { tokenRopstenValid } from "../test/fixtures/tokenRopstenValid";
-import { tokenRopstenInvalid } from "../test/fixtures/tokenRopstenInvalid";
+import { tokenRopstenValid } from "../fixtures/tokenRopstenValid";
+import { tokenRopstenInvalid } from "../fixtures/tokenRopstenInvalid";
 
 /* eslint-disable global-require */
 jest.mock("./util/provider", () => ({

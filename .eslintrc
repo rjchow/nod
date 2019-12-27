@@ -11,6 +11,12 @@
       }
     }
   },
+  "globals": {
+    "artifacts": "readonly",
+    "contract": "readonly",
+    "assert": "readonly",
+    "web3": "writable"
+  },
   "overrides": [
     {
       "files": ["**/*.ts", "**/*.tsx"],
@@ -23,7 +29,8 @@
         "no-undef": "off",
         "no-unused-vars": "off",
         "no-restricted-globals": "off",
-        "import/prefer-default-export": "off"
+        "import/prefer-default-export": "off",
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.test.*"]}],
       }
     }
   ]

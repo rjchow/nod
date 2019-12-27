@@ -1,6 +1,6 @@
 import * as ethers from "ethers";
 import { contractInstance } from "./contractInstance";
-import tokenRegistryAbi from "./abi/tokenRegistry.json";
+import { abi as tokenRegistryAbi } from "../../../build/contracts/ERC721MintableFull.json";
 
 jest.mock("ethers");
 /* eslint-disable global-require */

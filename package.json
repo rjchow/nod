@@ -15,7 +15,9 @@
   ],
   "scripts": {
     "type-check": "tsc --noEmit",
-    "test": "jest --testPathPattern=src",
+    "test:js": "jest --testPathPattern=src",
+    "test:contracts": "truffle test",
+    "test": "npm run test:contracts && npm run test:js",
     "coverage": "npm test -- --coverage",
     "postcoverage": "open-cli coverage/lcov-report/index.html",
     "lint": "eslint . --ext js,ts,tsx",
@@ -24,7 +26,7 @@
     "postdocs": "git add README.md",
     "clean": "rimraf dist",
     "prebuild": "npm run docs && npm run clean",
-    "build": "tsc --emitDeclarationOnly && babel src -d dist --ignore src/**/*.spec.ts,src/**/*.test.ts -x .js,.ts,.tsx --copy-files",
+    "build": "truffle compile && tsc --emitDeclarationOnly && babel src -d dist --ignore src/**/*.spec.ts,src/**/*.test.ts -x .js,.ts,.tsx --copy-files",
     "preversion": "npm run lint && npm test && npm run build",
     "semantic-release": "semantic-release",
     "commit": "git-cz",
@@ -33,25 +35,17 @@
     "commitlint-circle": "commitlint-circle"
   },
   "types": "dist/ts/src",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,ts,tsx}": [
-      "eslint --fix --ext js,ts,tsx",
-      "git add"
-    ]
-  },
   "keywords": [
-    "generator-nod"
+    "ethereum",
+    "solidity",
+    "ERC721",
+    "TradeTrust",
+    "OpenAttestation"
   ],
   "dependencies": {
     "@govtechsg/open-attestation": "1.1.41",
     "debug": "4.1.1",
-    "ethers": "4.0.37",
-    "ganache-cli": "6.7.0",
+    "ethers": "4.0.41",
     "lodash": "4.17.15"
   },
   "devDependencies": {
@@ -67,10 +61,12 @@
     "@types/debug": "4.1.4",
     "@types/jest": "24.0.15",
     "@types/lodash": "4.14.144",
-    "@typescript-eslint/eslint-plugin": "1.11.0",
-    "@typescript-eslint/parser": "1.11.0",
+    "@typescript-eslint/eslint-plugin": "2.13.0",
+    "@typescript-eslint/parser": "2.13.0",
     "babel-eslint": "10.0.2",
     "babel-jest": "24.8.0",
+    "chai": "4.2.0",
+    "chai-as-promised": "7.1.1",
     "commitizen": "4.0.3",
     "documentation": "12.0.3",
     "eslint": "6.0.0",
@@ -78,6 +74,7 @@
     "eslint-config-prettier": "5.0.0",
     "eslint-plugin-import": "2.17.3",
     "eslint-plugin-prettier": "3.1.0",
+    "ganache-cli": "6.7.0",
     "git-cz": "3.2.1",
     "husky": "2.4.1",
     "jest": "24.8.0",
@@ -86,7 +83,8 @@
     "prettier": "1.18.2",
     "rimraf": "2.6.3",
     "semantic-release": "^15.13.30",
-    "typescript": "3.5.3"
+    "truffle": "5.1.3",
+    "typescript": "3.7.3"
   },
   "publishConfig": {
     "access": "public"
