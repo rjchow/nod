@@ -25,5 +25,8 @@
         "no-restricted-globals": "off"
       }
     }
-  ]
+  ],
+  "rules": {
+    "import/extensions": "off"
+  }
 }
