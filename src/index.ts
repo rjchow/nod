@@ -1,11 +1,11 @@
-import { Document, getData } from "@govtechsg/open-attestation";
-import { get } from "lodash";
-import { getLogger } from "./util/logger";
-import { getProvider } from "./util/provider";
-import { getOwnerOf, transferTokenOwnership } from "./util/token";
-import { Issuer, TransferOwnership } from "./types";
+import {Document, getData} from "@govtechsg/open-attestation";
+import {get} from "lodash";
+import {getLogger} from "./util/logger";
+import {getProvider} from "./util/provider";
+import {getOwnerOf, transferTokenOwnership} from "./util/token";
+import {Issuer, TransferOwnership} from "./types";
 
-const { trace } = getLogger("TokenInfo:");
+const {trace} = getLogger("TokenInfo:");
 
 interface TokenInterface {
   document: Document;

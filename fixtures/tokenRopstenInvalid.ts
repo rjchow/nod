@@ -1,4 +1,4 @@
-import { SignedDocument } from "@govtechsg/open-attestation";
+import {SignedDocument} from "@govtechsg/open-attestation";
 
 export const tokenRopstenInvalid: SignedDocument = {
   schema: "tradetrust/v1.0",
