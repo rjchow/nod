@@ -1,6 +1,6 @@
 const TitleEscrow = artifacts.require("TitleEscrow");
 const ERC721 = artifacts.require("ERC721MintableFull");
-const { expect } = require("chai").use(require("chai-as-promised"));
+const {expect} = require("chai").use(require("chai-as-promised"));
 
 const SAMPLE_TOKEN_ID = "0x624d0d7ae6f44d41d368d8280856dbaac6aa29fb3b35f45b80a7c1c90032eeb3";
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
@@ -104,9 +104,12 @@ contract("TitleEscrow", accounts => {
     });
 
     expect(transferTx).to.be.rejectedWith(/TitleEscrow: Contract is not holding a token/);
+
+    const status = await escrowInstance.status();
+    expect(status.toString()).to.equal("0");
   });
 
-  it("should receive a ERC721 token correctly", async () => {
+  it("should update status upon receiving a ERC721 token", async () => {
     const escrowInstance = await TitleEscrow.new(ERC721Address, beneficiary1, holder1, {
       from: beneficiary1
     });
@@ -114,6 +117,9 @@ contract("TitleEscrow", accounts => {
     assertTransferLog(mintTx.logs[0], ZERO_ADDRESS, escrowInstance.address);
     const owner = await ERC721Instance.ownerOf(SAMPLE_TOKEN_ID);
     expect(owner).to.equal(escrowInstance.address);
+
+    const status = await escrowInstance.status();
+    expect(status.toString()).to.equal("1");
   });
 
   it("should should fail to receive ERC721 if its from a different registry", async () => {
@@ -140,7 +146,7 @@ contract("TitleEscrow", accounts => {
 
     assertTransferLog(mintTx.logs[0], ZERO_ADDRESS, escrowInstance1.address);
 
-    const transferTx = await escrowInstance1.transferTo(escrowInstance2.address, { from: beneficiary1 });
+    const transferTx = await escrowInstance1.transferTo(escrowInstance2.address, {from: beneficiary1});
 
     assertTitleCededLog(transferTx.logs[0], ERC721Instance.address, escrowInstance2.address);
     const newOwner = await ERC721Instance.ownerOf(SAMPLE_TOKEN_ID);
@@ -175,7 +181,7 @@ contract("TitleEscrow", accounts => {
 
     expect(await escrowInstance.holder()).to.be.equal(holder1);
 
-    const approveEndorseTransferTx = await escrowInstance.endorseTransfer(beneficiary2, { from: beneficiary1 });
+    const approveEndorseTransferTx = await escrowInstance.endorseTransfer(beneficiary2, {from: beneficiary1});
 
     assertTransferEndorsedLog(approveEndorseTransferTx.logs[0], beneficiary1, beneficiary2);
 
@@ -278,14 +284,14 @@ contract("TitleEscrow", accounts => {
     const mintTx = await ERC721Instance.safeMint(escrowInstance1.address, SAMPLE_TOKEN_ID);
     assertTransferLog(mintTx.logs[0], ZERO_ADDRESS, escrowInstance1.address);
 
-    const transferTx = await escrowInstance1.transferTo(escrowInstance2.address, { from: beneficiary1 });
+    const transferTx = await escrowInstance1.transferTo(escrowInstance2.address, {from: beneficiary1});
     assertTitleCededLog(transferTx.logs[0], ERC721Address, escrowInstance2.address);
     assertTitleReceivedLog(transferTx.logs[1], ERC721Address, escrowInstance1.address);
 
     const newOwner = await ERC721Instance.ownerOf(SAMPLE_TOKEN_ID);
     expect(newOwner).to.be.equal(escrowInstance2.address);
 
-    const changeHolderTx = escrowInstance1.changeHolder(holder1, { from: beneficiary1 });
+    const changeHolderTx = escrowInstance1.changeHolder(holder1, {from: beneficiary1});
 
     await expect(changeHolderTx).to.be.rejectedWith(/TitleEscrow: Contract is not in use/);
   });
@@ -301,13 +307,13 @@ contract("TitleEscrow", accounts => {
     const mintTx = await ERC721Instance.safeMint(escrowInstance1.address, SAMPLE_TOKEN_ID);
     assertTransferLog(mintTx.logs[0], ZERO_ADDRESS, escrowInstance1.address);
 
-    const transferTx = await escrowInstance1.transferTo(escrowInstance2.address, { from: beneficiary1 });
+    const transferTx = await escrowInstance1.transferTo(escrowInstance2.address, {from: beneficiary1});
     assertTitleCededLog(transferTx.logs[0], ERC721Address, escrowInstance2.address);
     assertTitleReceivedLog(transferTx.logs[1], ERC721Address, escrowInstance1.address);
     const newOwner = await ERC721Instance.ownerOf(SAMPLE_TOKEN_ID);
     expect(newOwner).to.be.equal(escrowInstance2.address);
 
-    const transferTx2 = escrowInstance2.transferTo(escrowInstance1.address, { from: beneficiary2 });
+    const transferTx2 = escrowInstance2.transferTo(escrowInstance1.address, {from: beneficiary2});
 
     await expect(transferTx2).to.be.rejectedWith(/TitleEscrow: Contract has been used before/);
   });

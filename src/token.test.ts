@@ -1,7 +1,7 @@
-import { get } from "lodash";
+import {get} from "lodash";
 import Token from ".";
-import { tokenRopstenValid } from "../fixtures/tokenRopstenValid";
-import { tokenRopstenInvalid } from "../fixtures/tokenRopstenInvalid";
+import {tokenRopstenValid} from "../fixtures/tokenRopstenValid";
+import {tokenRopstenInvalid} from "../fixtures/tokenRopstenInvalid";
 
 /* eslint-disable global-require */
 jest.mock("./util/provider", () => ({
@@ -13,9 +13,9 @@ jest.mock("./util/token", () => {
     return Promise.resolve("0x37242939c5b691d0a9402b21cbd61acd287e552b");
   }
   function transferTokenOwnership(_from: string, _to: string, _token: string) {
-    return Promise.resolve({ owner: _to, token: _token });
+    return Promise.resolve({owner: _to, token: _token});
   }
-  return { getOwnerOf, transferTokenOwnership };
+  return {getOwnerOf, transferTokenOwnership};
 });
 
 describe("token info", () => {
@@ -41,6 +41,6 @@ describe("token info", () => {
     web3Provider.mockImplementationOnce(() => Promise.resolve("0xA"));
     const res = await instance.transferOwnership("0xA");
     const tokenId = `0x${get(instance.document, "signature.targetHash")}`;
-    expect(res).toEqual({ token: tokenId, owner: "0xA" });
+    expect(res).toEqual({token: tokenId, owner: "0xA"});
   });
 });
