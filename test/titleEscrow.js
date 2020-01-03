@@ -93,18 +93,17 @@ contract("TitleEscrow", accounts => {
       from: beneficiary1
     });
 
-    expect(endorseTransferTx).to.be.rejectedWith(/TitleEscrow: Contract is not holding a token/);
+    await expect(endorseTransferTx).to.be.rejectedWith(/TitleEscrow: Contract is not holding a token/);
     const changeHolderTx = escrowInstance.changeHolder(holder2, {
       from: holder1
     });
 
-    expect(changeHolderTx).to.be.rejectedWith(/TitleEscrow: Contract is not holding a token/);
+    await expect(changeHolderTx).to.be.rejectedWith(/TitleEscrow: Contract is not holding a token/);
     const transferTx = escrowInstance.transferTo(beneficiary2, {
       from: holder1
     });
 
-    expect(transferTx).to.be.rejectedWith(/TitleEscrow: Contract is not holding a token/);
-
+    await expect(transferTx).to.be.rejectedWith(/TitleEscrow: Contract is not holding a token/);
     const status = await escrowInstance.status();
     expect(status.toString()).to.equal("0");
   });

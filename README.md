@@ -1,27 +1,33 @@
-# nod
+# Open-Attestation Token
 
-ERC721 Token interactions
+This library facilitates ERC721 Token interactions using OpenAttestation wrapped documents as token identifiers.
+EthersJS is heavily used in this library and unless otherwise stated all Ethereum-related interfaces are expected to be derived from EthersJS.
 
 ## Install
 
-    $ npm install @govtechsg/oa-token or yarn @govtechsg/oa-token
+        $ npm install @govtechsg/oa-token or yarn @govtechsg/oa-token
 
 ## Initialize
 
-    import Token from "@govtechsg/oa-token";
-    const token = new Token(token);
+        import { ReadOnlyToken, Writeable } from "@govtechsg/oa-token";
+        const tokenInstance = new ReadOnlyToken({document: wrappedDocument});
 
 ## Get the owner of the contract
 
-    token.getOwner();
+        await tokenInstance.getOwner();
 
-returns address of the owner.
+returns a promise for the address of the owner.
 
 ## Transfer the token ownership
 
-    token.transferOwnership("NEW_OWNER_ADDRESS");
+Writeable token instance initialisation requires an EthersJS type wallet that has write permissions for that token.
 
-returns object containing txHash, owner and tokenId.
+        const writeableTokenInstance = new WriteableToken({document: wrappedDocument, web3Provider, wallet})
+        await token.transferOwnership("NEW_OWNER_ADDRESS");
+
+returns a promise for an EthersJS transaction receipt
+
+# Development
 
 ## Logging
 

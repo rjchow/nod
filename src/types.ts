@@ -2,8 +2,8 @@ export interface Issuer {
   tokenRegistry: string;
 }
 
-export interface TransferOwnership {
-  txHash: string;
-  token: string;
-  owner: string;
+export enum EthereumNetwork {
+  Homestead = "homestead",
+  Main = "homestead",
+  Ropsten = "ropsten"
 }
