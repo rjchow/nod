@@ -9,5 +9,5 @@ export const error = (namespace: string) => logger.extend(`error:${namespace}`);
 export const getLogger = (namespace: string) => ({
   trace: trace(namespace),
   info: info(namespace),
-  error: error(namespace)
+  error: error(namespace),
 });
