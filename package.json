@@ -31,7 +31,8 @@
     "commit": "git-cz",
     "commit:retry": "git-cz --retry",
     "commitmsg": "commitlint -e",
-    "commitlint-circle": "commitlint-circle"
+    "commitlint-circle": "commitlint-circle",
+    "upgrade-deps": "npx updtr"
   },
   "types": "dist/ts",
   "husky": {
